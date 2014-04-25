@@ -1,0 +1,16 @@
+numberOfGenomes	4
+numberOfGenomePairs	9
+8400	9050	data/8400_9050.CDS-CDS.last.tdd10.cs0.filtered.dag.all.go_D20_g10_A5.aligncoords.Dm0.ma1.qac3.3.40.gcoords
+10997	8400	data/10997_8400.CDS-CDS.last.tdd10.cs0.filtered.dag.all.go_D20_g10_A5.aligncoords.Dm0.ma1.qac3.3.40.gcoords
+10997	9050	data/10997_9050.CDS-CDS.last.tdd10.cs0.filtered.dag.all.go_D20_g10_A5.aligncoords.Dm0.ma1.qac3.3.40.gcoords
+10997	19515	data/10997_19515.CDS-CDS.last.tdd10.cs0.filtered.dag.all.go_D20_g10_A5.aligncoords.Dm0.ma1.qac3.1.40.gcoords
+19515	8400	data/19515_8400.CDS-CDS.last.tdd10.cs0.filtered.dag.all.go_D20_g10_A5.aligncoords.Dm0.ma1.qac1.3.40.gcoords
+19515	9050	data/19515_9050.CDS-CDS.last.tdd10.cs0.filtered.dag.all.go_D20_g10_A5.aligncoords.Dm0.ma1.qac1.3.40.gcoords
+8400	8400	data/8400_8400.CDS-CDS.last.tdd10.filtered.dag.all.go_D20_g10_A5.aligncoords.Dm0.ma1.qac3.3.40.gcoords
+9050	9050	data/9050_9050.CDS-CDS.last.tdd10.filtered.dag.all.go_D20_g10_A5.aligncoords.Dm0.ma1.qac3.3.40.gcoords
+10997	10997	data/10997_10997.CDS-CDS.last.tdd10.filtered.dag.all.go_D20_g10_A5.aligncoords.Dm0.ma1.qac3.3.40.gcoords
+8400	3
+9050	3
+10997	3
+19515	1
+data/noSubGenomeRegions.txt

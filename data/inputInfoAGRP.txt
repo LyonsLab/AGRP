@@ -1,0 +1,25 @@
+numberOfGenomes	4
+genomeIndex	ploidyNumber	weights
+8400	3	0	2	4	6	
+9050	3	0	2	4	6
+10997	3	0	2	4	6
+19515	1	0	3
+weightOfAdjacent>=	4
+minimumGeneGroupLength>=	3
+AncChrNumber	7
+genomeInContigIndex	weight
+0	2
+1	2
+2	2
+3	2
+4	2
+5	2
+6	2
+7	2
+8	2
+9	3
+
+
+
+
+

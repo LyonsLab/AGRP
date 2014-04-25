@@ -1,0 +1,16 @@
+javac TestGetGenomes.java
+java TestGetGenomes dataNoSubgenomeInfo/inputInfoCoGe.txt
+javac TestGetContigInput.java
+java TestGetContigInput dataNoSubgenomeInfo/inputInfoAGRP.txt
+cd outputFiles
+python contigInput_8400_9050_10997_19515.py> contigOutput.txt
+cd ..
+javac TestGetContigOutputAndScaffoldInputNoSubgenomeInfo.java
+java TestGetContigOutputAndScaffoldInputNoSubgenomeInfo dataNoSubgenomeInfo/inputInfoAGRP.txt
+cd outputFiles
+python scaffoldInput.py > scaffoldOutput.txt
+cd ..
+javac TestScaffoldOutputNoSubgenomeInfo.java
+java TestScaffoldOutputNoSubgenomeInfo
+
+

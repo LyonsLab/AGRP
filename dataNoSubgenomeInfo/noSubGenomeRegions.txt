@@ -1,0 +1,4 @@
+8400	0	3	peachRange			colorCode	subgenome	chr	start	end
+9050	0	3	vitis				colorCode	subgenome	chr	start	end10997	0	3	cacao		colorCode	subgenome	chr	start	end
+19515	0	1	amborella
+colorCode	subgenome	chr	start	end

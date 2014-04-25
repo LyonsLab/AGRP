@@ -1,0 +1,22 @@
+javac TestGetGenomes.java
+java TestGetGenomes data/inputInfoCoGe.txt
+javac TestGetContigInput.java
+java TestGetContigInput data/inputInfoAGRP.txt
+cd outputFiles
+python contigInput_8400_9050_10997_19515.py> contigOutput.txt
+cd ..
+javac TestGetContigOutputAndScaffoldInput.java
+java TestGetContigOutputAndScaffoldInput data/inputInfoAGRP.txt
+cd outputFiles
+python scaffoldInput1.py > scaffoldOutput1.txt
+python scaffoldInput2.py > scaffoldOutput2.txt
+python scaffoldInput3.py > scaffoldOutput3.txt
+python scaffoldInput4.py > scaffoldOutput4.txt
+python scaffoldInput5.py > scaffoldOutput5.txt
+python scaffoldInput6.py > scaffoldOutput6.txt
+python scaffoldInput7.py > scaffoldOutput7.txt
+cd ..
+javac TestScaffoldOutput.java
+java TestScaffoldOutput
+
+
