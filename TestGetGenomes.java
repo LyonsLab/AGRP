@@ -1,51 +1,97 @@
 
 import java.util.*;
 import java.io.*;
+import java.util.regex.Pattern;
 
 
 public class TestGetGenomes{
 	public static void main( String[] args) throws Exception{
 		
-		Calendar time = Calendar.getInstance();
+		/*Calendar time = Calendar.getInstance();
 		System.out.println("start " + time.getTime());
-
+*/
         TestGetGenomes atest = new TestGetGenomes();
-        String inputInfo = args[0];
-        
-		FileReader fr = new FileReader(inputInfo);
-		BufferedReader br = new BufferedReader(fr);
-        String aline = br.readLine();
-        String[] info = aline.split("\t");
-        int numberOfGenomes =Integer.parseInt(info[1]);
-        System.out.println("numberOFGenomes\t"+numberOfGenomes);
-        
-        aline = br.readLine();
-        info = aline.split("\t");
-        int numberOfGenomePairs =Integer.parseInt(info[1]);
-        System.out.println("numberOFGenomePairs\t"+numberOfGenomePairs);
-        
-        String[] inputFiles = new String[numberOfGenomePairs];
-        for(int i = 0; i< inputFiles.length;i++){
-            inputFiles[i] = br.readLine();
+        if (args.length < 8) {
+            System.out.println(Usage());
+            System.exit(1);
         }
         
-       
+        String[] genomeIndex = null;
+        String[] ploidyArray = null;
+        String rangeFile = null;
+        File[] data = null;
+        String output_directory = ".";
+        
+        for(int i = 0; i < args.length; i += 2) {
+            String argument = args[i].substring(1);
+            String option = args[i + 1];
+            
+            switch(argument) {
+                case "d":
+                    String dir = option;
+                    File f = new File(dir);
+                    data = f.listFiles();
+                    break;
+                case "g":
+                    String genomeIndexString = option;
+                    genomeIndex = option.split(Pattern.quote(","));
+                    break;
+                case "p":
+                    String ploidyString = option;
+                    ploidyArray = ploidyString.split(Pattern.quote(","));
+                    break;
+                case "s":
+                    File sub_genome_file = new File(option);
+                    if (!sub_genome_file.exists()) {
+                        System.out.println("The sub genome file does not exist.");
+                        System.exit(1);
+                    }
+                    rangeFile = option;
+                    break;
+                case "o":
+                    output_directory = option;
+                    break;
+                default:
+                    System.out.println("Unknown argument");
+                    System.out.println(Usage());
+                    System.exit(1);
+            }
+        }
+        
+        if (genomeIndex == null || rangeFile == null || ploidyArray == null ||
+            rangeFile == null || data == null) {
+            System.out.println("Please specify all the command line arguments");
+            System.out.println(Usage());
+            System.exit(1);
+        }
+        
+        File fd = new File(output_directory);
+        if (!fd.exists()) {
+            fd.mkdir();
+        }
+        
+        //int[] genomeInde
+        int numberOfGenomes = genomeIndex.length;
+        int[] allGenomeIndex = new int[numberOfGenomes];
+        for(int i = 0; i< numberOfGenomes; i++){
+            allGenomeIndex[i] = Integer.parseInt(genomeIndex[i]);
+        }
         
         int[][] ploidy = new int[numberOfGenomes][2];
         for(int i = 0; i< ploidy.length;i++){
-            aline = br.readLine();
-            info = aline.split("\t");
-            ploidy[i][0] =Integer.parseInt(info[0]);
-            ploidy[i][1] =Integer.parseInt(info[1]);
+            ploidy[i][0] = allGenomeIndex[i];
+            ploidy[i][1] =Integer.parseInt(ploidyArray[i]);
+            System.out.println(ploidy[i][0]+"\t"+ploidy[i][1]);
         }
         
+        
         SubgenomeRanges[] rangesForGenomes = new SubgenomeRanges[numberOfGenomes];
-        String rangeFile = br.readLine();
-        fr = new FileReader(rangeFile);
-        br = new BufferedReader(fr);
+        FileReader fr = new FileReader(rangeFile);
+        BufferedReader br = new BufferedReader(fr);
+        String aline = "";
         for(int g = 0; g< rangesForGenomes.length; g++){
             aline = br.readLine();
-            info = aline.split("\t");
+            String[] info = aline.split("\t");
             int gi = Integer.parseInt(info[0]);
             int b = Integer.parseInt(info[1]);
             int p = Integer.parseInt(info[2]);
@@ -61,23 +107,24 @@ public class TestGetGenomes{
             }
             rangesForGenomes[g] =new SubgenomeRanges(gi, p,b, r);
         }
-        
-        
-
-        
-        
+    
+     
+        int numberOfGenomePairs = data.length;
         GenomePair[]  gps = new GenomePair[numberOfGenomePairs];
         for(int i = 0; i< numberOfGenomePairs; i++){
-            String[] apair = inputFiles[i].split("\t");
-            String aFileName =  apair[2];
-            System.out.println(aFileName);
-            int genomeIndex1 = Integer.parseInt(apair[0]);
-            int genomeIndex2 = Integer.parseInt(apair[1]);
+           // String[] apair = inputFiles[i].split("\t");
+            File aFile = data[i];
+           // String aFileName =  apair[2];
+           // System.out.println(aFileName);
+        
+            int[] twoGenomeIndex = atest.getGenomeIndex(aFile.getName()); //
+            int genomeIndex1 = twoGenomeIndex[0];
+            int genomeIndex2 = twoGenomeIndex[1];
             int ploidy1 = atest.getPloidNumber(genomeIndex1, ploidy);
             int ploidy2 = atest.getPloidNumber(genomeIndex2, ploidy);
             System.out.println(genomeIndex1+"\t"+genomeIndex2+"\t"+ploidy1+"\t"+ploidy2);
             
-            fr = new FileReader(aFileName);
+            fr = new FileReader(aFile);
             br = new BufferedReader(fr);
             int totalLines = 0;
             aline = br.readLine();
@@ -91,7 +138,7 @@ public class TestGetGenomes{
             GeneInfo[] geneList2 = new GeneInfo[totalLines];
             int[] weight = new int[totalLines];
             int index = 0;
-            fr = new FileReader(aFileName);
+            fr = new FileReader(aFile);
             br = new BufferedReader(fr);
             aline = br.readLine();
             while(aline!=null){
@@ -145,8 +192,7 @@ public class TestGetGenomes{
     
         Homolog ahomolog = new Homolog();
 		Homolog[] allOriginalHomologs = ahomolog.getAllHomologs(gps, numberOfGenomes);
-        time = Calendar.getInstance();
-		System.out.println("end " + time.getTime());
+       
         int[] homologSize1 = new int[10000];
         int[] homologSize2 = new int[10000];
         
@@ -186,10 +232,7 @@ public class TestGetGenomes{
                 }
             }
         }
-        int[] allGenomeIndex = new int[numberOfGenomes];
-        for(int i = 0; i< ploidy.length; i++){
-            allGenomeIndex[i] = ploidy[i][0];
-        }
+     
         
         // method from: OMG! Orthologs in multiple genomes - competing graph-theoretical formulations (C. Zheng, K.M. Swenson, E. Lyons, & D. Sankoff),WABI'11 Proceedings of the 11th International Conference on Algorithms in Bioinformatics (T. Przytycka & MF. Sagot ed.) Lecture Notes in Computer Science 6833, 364-375 (2011).
          // Method can be replaced with others for constraining gene families.
@@ -198,7 +241,7 @@ public class TestGetGenomes{
         
         
         // print out orthologSet list in a file
-        String outPutFileName = "outputFiles/orthologSets";
+        String outPutFileName = output_directory + "/orthologSets";
         for(int i = 0; i< allGenomeIndex.length; i++){
             outPutFileName = outPutFileName+"_"+new Integer(allGenomeIndex[i]).toString();
         }
@@ -217,7 +260,7 @@ public class TestGetGenomes{
     
 		GenomeInGeneInfo[] genomes = new GenomeInGeneInfo[numberOfGenomes];
         
-        outPutFileName = "outputFiles/genomesInString";
+        outPutFileName = output_directory + "/genomesInString";
         for(int i = 0; i< allGenomeIndex.length; i++){
             outPutFileName = outPutFileName+"_"+new Integer(allGenomeIndex[i]).toString();
         }
@@ -251,7 +294,7 @@ public class TestGetGenomes{
             rangesForGenomesInGeneOrder[i] = rangesForGenomes[i].getRangesInGeneOrder(genomes[i]);
         }
         
-        outPutFileName = "outputFiles/subgenomeRangesInGeneOrder";
+        outPutFileName = output_directory + "/subgenomeRangesInGeneOrder";
         for(int i = 0; i< allGenomeIndex.length; i++){
             outPutFileName = outPutFileName+"_"+new Integer(allGenomeIndex[i]).toString();
         }
@@ -264,6 +307,7 @@ public class TestGetGenomes{
         }
         fbw.flush();
         fbw.close();
+        
         
 	}
 	
@@ -340,7 +384,22 @@ public class TestGetGenomes{
 		}
 		return chr;
 	}
+   //  int[] twoGenomeIndex = atest.getGenomeIndex(aFileName);
     
+    public int[] getGenomeIndex(String aFileName){
+        String[] infos = aFileName.split(Pattern.quote("."));
+        
+        if (infos.length < 2) {
+            System.out.println("Could not get genome index for " + aFileName);
+            System.exit(1);
+        }
+        String[] twoGenomeIndex = infos[0].split(Pattern.quote("_"));
+        int[] result = new int[2];
+        result[0] = Integer.parseInt(twoGenomeIndex[0]);
+       
+        result[1] = Integer.parseInt(twoGenomeIndex[1]);
+        return result;
+    }
     
 	public GenePair[] removeAnEdge(GenePair[] edges){
 		int index = -1;
@@ -355,7 +414,7 @@ public class TestGetGenomes{
 		return edges;
 	}
     
-    
-	
-	
+    public static String Usage() {
+        return "TestGetGenomes:";
+    }
 }

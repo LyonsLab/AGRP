@@ -1,64 +1,76 @@
 
 import java.util.*;
 import java.io.*;
+import java.util.regex.Pattern;
 
 public class TestGetContigInput{
 	public static void main( String[] args) throws Exception{
-		String inputInfo = args[0];
+        if (args.length < 8) {
+            System.out.println(Usage());
+            System.exit(1);
+        }
         
-		FileReader fr = new FileReader(inputInfo);
-		BufferedReader br = new BufferedReader(fr);
-        String aline = br.readLine();
-        String[] info = aline.split("\t");
-        int numberOfGenomes =Integer.parseInt(info[1]);
-        System.out.println("numberOfGenomes\t"+numberOfGenomes);
-     //   aline = br.readLine();
-    
+        String[] genomeIndex = null;
+        String[] weightSchemeString = null;
+        String inputGenomes = null;
+        String weightOfAdjacency = null;
+        String output_directory = ".";
         
+        for(int i = 0; i < args.length; i += 2) {
+            String argument = args[i].substring(1);
+            String option = args[i + 1];
+            
+            switch(argument) {
+                case "g":
+                    String genomeIndexString = option;
+                    genomeIndex = option.split(Pattern.quote(","));
+                    break;
+                case "w":
+                    String weightString = option;
+                    weightSchemeString = weightString.split(Pattern.quote(","));
+                    break;
+                case "wa":
+                    weightOfAdjacency = option;
+                    break;
+                case "i":
+                    inputGenomes = option;
+                    break;
+                case "o":
+                    output_directory = option;
+                    break;
+                default:
+                    System.out.println("Unknown argument");
+                    System.out.println(Usage());
+                    System.exit(1);
+            }
+        }
+
+        if (weightSchemeString == null || genomeIndex == null || inputGenomes == null ||
+            weightOfAdjacency == null) {
+            System.out.println("Please specify all the command line arguments");
+            System.out.println(Usage());
+            System.exit(1);
+        }
+        
+        int numberOfGenomes =genomeIndex.length;
+        int weightToInclude = Integer.parseInt(weightOfAdjacency);
+       // int[] allGenomeIndex = new int[numberOfGenomes];
         int[] allGenomeIndex = new int[numberOfGenomes];
-        int[] ploidyNumber = new int[numberOfGenomes];
-      
-        int[][] weightTable = new int[numberOfGenomes][ploidyNumber[0]];
-        aline = br.readLine();//genomeIndex	ploidyNumber	chrNumber	weights
         for(int i = 0; i< numberOfGenomes; i++){
-            aline = br.readLine();
-            String[] infos = aline.split("\t");
-            allGenomeIndex[i] = Integer.parseInt(infos[0]);
-            ploidyNumber[i] = Integer.parseInt(infos[1]);
-          //  chrNumber[i] = Integer.parseInt(infos[2]);
-            weightTable[i] = new int[ploidyNumber[i]+1];
-            for(int j = 0; j< weightTable[i].length; j++){
-                weightTable[i][j] = Integer.parseInt(infos[2+j]);
-            }
+            allGenomeIndex[i] = Integer.parseInt(genomeIndex[i]);
         }
-        
-        for(int i = 0; i< allGenomeIndex.length; i++){
-            System.out.print(allGenomeIndex[i]+"\t"+ploidyNumber[i]+"\t");
-            for(int j = 0; j< weightTable[i].length; j++ ){
-                System.out.print(weightTable[i][j]+"\t");
-            }
-            System.out.println();
+        int[] weightScheme = new int[weightSchemeString.length];
+        for(int i = 0; i< weightSchemeString.length; i++){
+            weightScheme[i] = Integer.parseInt(weightSchemeString[i]);
         }
-        
-        aline = br.readLine();
-        info = aline.split("\t");
-        int weightToInclude = Integer.parseInt(info[1]);
-		System.out.println("edge with Weight >="+weightToInclude);
-        
         
         GenomeInString[] leaveGenomes = new GenomeInString[numberOfGenomes];
-       // aline = br.readLine();
-      //  System.out.println("genomeFies\t"+aline);
-        String leaveGenomesFile = "outputFiles/genomesInString";
-        for(int i =0; i<  allGenomeIndex.length; i++){
-            leaveGenomesFile = leaveGenomesFile+"_"+new Integer(allGenomeIndex[i]).toString();
-        }
-        leaveGenomesFile = leaveGenomesFile+".txt";
         
+        String leaveGenomesFile = inputGenomes;
         FileReader fr1 = new FileReader(leaveGenomesFile);
         BufferedReader br1 = new BufferedReader(fr1);
         String aline1 = br1.readLine();
-        info = aline1.split("\t");
+        String[] info = aline1.split("\t");
         int numberOfGenes =Integer.parseInt(info[1]);
         System.out.println("numberOfGenes\t"+numberOfGenes);
         int[] chrNumber = new int[numberOfGenomes];
@@ -80,10 +92,6 @@ public class TestGetContigInput{
            
         }
         
-      /*  for(int i = 0; i< leaveGenomes.length; i++){
-            System.out.println("a genome \t"+allGenomeIndex[i]);
-            leaveGenomes[i].print();
-        }*/
 		// get Gene Content
 		String geneContent = "";
 		for(int i = 1; i<numberOfGenes+1; i++){
@@ -98,7 +106,7 @@ public class TestGetContigInput{
             byte[][] edgeMatrix1 = allEdges.getASetOfEdge(leaveGenomes[i].chrs);
             for(int j = 0; j< edgeMatrix.length; j++){
                 for(int k = 0; k< edgeMatrix.length; k++){
-                    int weighthere = weightTable[i][edgeMatrix1[j][k]];
+                    int weighthere = weightScheme[i]*edgeMatrix1[j][k];
                     edgeMatrix[j][k] = edgeMatrix[j][k] +weighthere;
                 }
             }
@@ -137,7 +145,7 @@ public class TestGetContigInput{
 		}*/
         
         
-        String outPutFileName = "outputFiles/contigInput";
+        String outPutFileName = output_directory + "/contigInput";
         for(int i = 0; i< allGenomeIndex.length; i++){
             outPutFileName = outPutFileName+"_"+new Integer(allGenomeIndex[i]).toString();
         }
@@ -183,4 +191,8 @@ public class TestGetContigInput{
     
     
 	}
+    
+    public static String Usage() {
+        return "TODO";
+    }
 }

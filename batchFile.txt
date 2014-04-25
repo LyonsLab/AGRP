@@ -1,6 +1,10 @@
 javac TestGetGenomes.java
-java TestGetGenomes data/inputInfoCoGe.txt
+java TestGetGenomes -d data -g 8400,9050,10997,19515 -w 3,3,3,1 -s subGenomeRegions.txt -o data
 javac TestGetContigInput.java
+java TestGetContigInput -g 8400,9050,10997,19515 -w 2,2,2,3 -wa 4 -i doesnotexist/genomesInString_8400_9050_10997_19515.txt -o doesnotexist
+
+
+
 java TestGetContigInput data/inputInfoAGRP.txt
 cd outputFiles
 python contigInput_8400_9050_10997_19515.py> contigOutput.txt
