@@ -25,9 +25,12 @@ Code modified by Haibao, Apr-25-2014:
 """
 
 
+import os.path as op
+import os
 import time
 import sys
 
+from glob import glob
 from optparse import OptionParser
 
 sys.setrecursionlimit(4000)
@@ -862,17 +865,7 @@ def maxWeightMatching(edges, maxcardinality=False):
     return matched
 
 
-if __name__ == '__main__':
-
-    p = OptionParser(__doc__)
-    p.add_option("-i", "--infile", help="Input file")
-    p.add_option("-o", "--outfile", help="Output file")
-    opts, args = p.parse_args()
-
-    infile, outfile = opts.infile, opts.outfile
-    if not infile or not outfile:
-        sys.exit(not p.print_help())
-
+def main(infile, outfile):
     fp = open(infile)
     edges = []
     for row in fp:
@@ -891,3 +884,34 @@ if __name__ == '__main__':
     print >> fw, "totalweight =", totalweight
     end = time.clock()
     print >> fw, end - start
+    fw.close()
+
+
+if __name__ == '__main__':
+
+    p = OptionParser(__doc__)
+    p.add_option("-i", "--infile", help="Input file")
+    p.add_option("-o", "--outfile", help="Output file")
+    opts, args = p.parse_args()
+
+    infile, outfile = opts.infile, opts.outfile
+    if not infile or not outfile:
+        sys.exit(not p.print_help())
+
+    if op.isdir(infile):
+        indir = infile
+        infile = glob(indir + "/*")
+        outdir = outfile
+        if not op.exists(outdir):
+            os.mkdir(outdir)
+        outfile = [op.join(outdir, op.basename(x) + ".out") for x in infile]
+    else:
+        infile = [infile]
+        outfile = [outfile]
+
+    for i, o in zip(infile, outfile):
+        try:
+            main(i, o)
+        except:
+            print >> sys.stderr, "MWM failed on `{0}`. Output `{1}` not generated.".\
+                                format(i, o)
