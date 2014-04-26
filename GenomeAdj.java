@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.regex.Pattern;
 import java.io.*;
 public class GenomeAdj{
 	String rootGeneContent;
@@ -47,6 +48,8 @@ public class GenomeAdj{
 	//	for(int i = 0; i< nodeString.length; i++){
 	//		System.out.println(i+"  \t"+nodeString[i]);
 	//	}
+        
+        System.out.println(" totalLength "+ nodeString.length);
 		edges = new int[nodeString.length][nodeString.length];
 		for(int i = 0; i< selectedEdges.length; i++){
 			if(selectedEdges[i]!=null){
@@ -440,7 +443,7 @@ public class GenomeAdj{
     
 	
 	public String[] splitBS(String s){
-        String[] tmp = s.trim().split(" ");
+        String[] tmp = s.trim().split("\\W+");
         int index = 0;
         for(int i = 0; i < tmp.length; i++){
             if(tmp[i].trim().equals("") ==false){

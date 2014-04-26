@@ -52,6 +52,11 @@ public class TestGetContigInput{
             System.exit(1);
         }
         
+        File fd = new File(output_directory);
+        if (!fd.exists()) {
+            fd.mkdir();
+        }
+        
         int numberOfGenomes =genomeIndex.length;
         int weightToInclude = Integer.parseInt(weightOfAdjacency);
        // int[] allGenomeIndex = new int[numberOfGenomes];

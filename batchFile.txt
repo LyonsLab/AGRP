@@ -2,25 +2,8 @@ javac TestGetGenomes.java
 java TestGetGenomes -d data -g 8400,9050,10997,19515 -w 3,3,3,1 -s subGenomeRegions.txt -o data
 javac TestGetContigInput.java
 java TestGetContigInput -g 8400,9050,10997,19515 -w 2,2,2,3 -wa 4 -i doesnotexist/genomesInString_8400_9050_10997_19515.txt -o doesnotexist
-
-
-
-java TestGetContigInput data/inputInfoAGRP.txt
-cd outputFiles
-python contigInput_8400_9050_10997_19515.py> contigOutput.txt
-cd ..
+python mwmatching-io.py -i doesnotexist/contigInput_8400_9050_10997_19515.txt -o doesnotexist/contigOutput.txt 
 javac TestGetContigOutputAndScaffoldInput.java
-java TestGetContigOutputAndScaffoldInput data/inputInfoAGRP.txt
-cd outputFiles
-python scaffoldInput1.py > scaffoldOutput1.txt
-python scaffoldInput2.py > scaffoldOutput2.txt
-python scaffoldInput3.py > scaffoldOutput3.txt
-python scaffoldInput4.py > scaffoldOutput4.txt
-python scaffoldInput5.py > scaffoldOutput5.txt
-python scaffoldInput6.py > scaffoldOutput6.txt
-python scaffoldInput7.py > scaffoldOutput7.txt
-cd ..
-javac TestScaffoldOutput.java
-java TestScaffoldOutput
+java TestGetContigOutputAndScaffoldInput -mml 3 -p 3,3,3,1  -w 2,2,2,3  -g 8400,9050,10997,19515  -co doesnotexist/contigOutput.txt -s doesnotexist/subgenomeRangesInGeneOrder_8400_9050_10997_19515.txt -gf doesnotexist/genomesInString_8400_9050_10997_19515.txt -o doesnotexist
 
-
+python mwmatching-io.py -i doesnotexist/scaffolds -o scaffolds_output

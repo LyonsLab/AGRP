@@ -1,0 +1,87 @@
+genome	0	1
+chr	0
+  contig3  contig11  contig15  contig23  contig24  contig25  contig27  contig40  contig42  contig60  contig64  contig87  contig89  contig95  contig96  contig102  contig106  contig107  contig112  contig121  contig123  contig125  contig141  contig151  contig153  contig158  contig172  contig178  contig186  contig190  contig195  contig215  contig229  contig236  contig238  contig240  contig253  contig262  contig264  contig267  contig271  contig273  contig278  contig280  contig282  contig294  contig300  contig302  contig311  contig327  contig338  contig340  contig348  contig374  contig379  contig385  contig388  contig399  contig410  contig415  contig421  contig433  contig437  contig440  contig451  contig453  contig456  contig462  contig477  contig484  contig485  contig488  contig489  contig492  contig496  contig509  contig510  contig513  contig516  contig519  contig524  contig525  contig527  contig537  contig544  contig547  contig557  contig558  contig564  contig566  contig569  contig570  contig572  contig582  contig583  contig587  contig588  contig595  contig605  contig609  contig611  contig625  contig629  contig631  contig638  contig640  contig644  contig661  contig670  contig671  contig688  contig693  contig694  contig695  contig700  contig705  contig712  contig715  contig716  contig725  contig726  contig730  contig731  contig732  contig737  contig738  contig746  contig762  contig769  contig774  contig775  contig777  contig779  contig791  contig798  contig825  contig827  contig839  contig845  contig856  contig860  contig872  contig875  contig880  contig892  contig904  contig905  contig915  contig916  contig924  contig926  contig928  contig934  contig938  contig941  contig943  contig949  contig950  contig952  contig962  contig965  contig969  contig973  contig978  contig988  contig990  contig992  contig1013  contig1016  contig1029  contig1030  contig1032  contig1034  contig1037  contig1045  contig1053  contig1066  contig1071  contig1072  contig1076  contig1080  contig1082  contig1089  contig1091  contig1094  contig1115  contig1154  contig1167  contig1181  contig1203  contig1247  contig1305  contig1317
+genome	1	0
+genome	2	1
+chr	0
+  -contig916  contig440  contig625  -contig547  -contig1167  -contig462  -contig1066  -contig60  contig477  -contig587  contig1029  contig875  -contig1037  contig774  contig300  contig340  contig712  contig638  -contig611  -contig537  contig570  contig1076  contig943  contig969  contig327  contig294  contig519  contig1091  -contig880  contig488  contig379  contig280  contig123  -contig827  contig1072  contig15  contig102  contig583  -contig87  -contig64  contig978  -contig338  -contig924  contig186  contig253  contig267  contig525  -contig671  -contig451  -contig125  -contig27  contig399  -contig348  -contig609  contig229  contig839  -contig605  contig456  -contig694  contig731  contig693  contig489  -contig1080  contig282  -contig262
+genome	3	2
+chr	0
+  -contig644  contig311  -contig695  contig25  -contig190  contig151  contig421  -contig485  contig3  -contig215  contig107  contig172  -contig42  contig566  -contig178  contig24  -contig40  -contig271  -contig716  -contig564  -contig112  -contig572  -contig89  contig1247  contig926  contig302  -contig153  contig670  contig791  contig825  -contig492  -contig527  contig158  contig941  -contig965  -contig738  -contig700  -contig777  contig992
+chr	1
+  contig1094  contig779  contig746  contig273  contig595  contig278  -contig705  contig988  contig524  contig60  contig904  contig240  -contig11  contig121  -contig23  contig775  -contig845  contig437  -contig238  -contig484  contig856  contig769  contig264  -contig726  -contig410  contig915  contig544  contig558  -contig949  -contig229  contig348  contig27  contig451  -contig95  -contig253  -contig267  contig338  contig64  contig102  contig15  contig385  contig236  contig588
+genome	4	0
+genome	5	1
+chr	0
+  contig60  contig928  -contig638  -contig712  -contig300  -contig509  contig374  contig1071  -contig572  contig695  -contig25  -contig1091  -contig151  contig190  -contig519  -contig123  contig485  -contig294  contig24  contig172  -contig969  -contig327  -contig40  -contig262  -contig943  -contig399  contig456  -contig566  -contig1076  -contig3  contig125  -contig311  contig107  -contig112  contig611  contig462  -contig42  -contig340  contig547  -contig625  -contig440  -contig570  contig916  -contig141  -contig271  -contig87  contig477  -contig587  contig186  contig1029  contig421  -contig96  contig282  contig1115  -contig537  contig875  -contig1037  -contig489  -contig715  -contig693  contig629  contig388  -contig688  -contig516  contig1154  contig488  contig379  contig280  -contig827  contig15  contig102  contig583  -contig64  -contig338  -contig924  contig253  contig267  contig525  -contig671
+genome	6	1
+chr	0
+  -contig558  contig941  contig640  -contig965  -contig141  -contig271  -contig716  -contig926  -contig87  -contig89  contig186  contig421  -contig178  -contig96  contig282  -contig738  contig1094  contig779  contig746  -contig1013  contig524  contig496  -contig488  -contig42  -contig572  -contig25  -contig151  -contig190  -contig123  -contig670  -contig172  contig1053  -contig40  -contig24  contig485  -contig399  -contig566  -contig3  contig125  contig791  -contig492  -contig311  -contig527  contig107  contig302  -contig112  -contig153  contig158  -contig229  contig872  contig348  contig27  contig451  -contig95  contig267  contig253  contig338  contig64  contig102  contig588  contig15  contig385  contig236  contig904  contig240  -contig11  contig121  -contig484  contig856  contig769  contig264  -contig726  -contig60  -contig990  contig238  -contig437  contig845  contig374  contig730
+genome	7	0
+genome	8	1
+chr	0
+  -contig525  -contig267  -contig253  contig338  contig64  -contig583  -contig102  -contig15  -contig1072  contig827  -contig916  -contig640  contig570  -contig644  contig440  contig625  -contig547  contig340  -contig462  contig112  -contig1066  -contig107  contig262  contig311  -contig611  -contig125  contig3  contig399  contig943  contig40  contig327  contig969  -contig172  -contig488  -contig24  contig294  -contig485  -contig489  contig1181  contig1080  contig25  -contig141  -contig695  contig42  contig379  contig280  -contig271  -contig87  contig477
+genome	9	1
+chr	0
+  -contig186  contig89  contig87  contig926  contig716  contig271  contig965  contig141  -contig158  contig153  contig340  contig112  -contig302  -contig107  contig262  contig527  contig311  contig492  -contig791  -contig125  contig566  contig3  contig40  -contig670  -contig172  contig1053  -contig24  -contig485  contig123  contig1317  contig190  contig151  contig25  contig572  contig42  contig488  -contig588  -contig15  -contig102  -contig64
+genome	10	30
+chr	0
+  contig15
+chr	1
+  -contig595  contig278  -contig705  -contig731  -contig410  contig544  contig694  contig605
+chr	2
+  contig941  contig557  contig141  contig640  -contig965  -contig271  contig421  contig1032  contig178
+chr	3
+  -contig195  -contig42
+chr	4
+  contig40  contig399  -contig566  -contig3  contig1016  contig125  contig611  contig791  -contig905  -contig311  -contig492  -contig527
+chr	5
+  contig938  -contig712  contig238  -contig437  -contig513  -contig300  -contig509
+chr	6
+  -contig89  contig186  contig1053  -contig294  -contig24  -contig485  contig456
+chr	7
+  -contig484  contig928  contig856  contig638  contig769
+chr	8
+  contig302  contig1066  -contig112  contig462  -contig340  -contig153  contig547  -contig625  contig158  -contig440  contig644  -contig570
+chr	9
+  -contig839  -contig229
+chr	10
+  -contig671  contig95  -contig451
+chr	11
+  -contig27  -contig348  -contig267  -contig253  contig924  contig338  contig64  contig102  -contig583  contig582
+chr	12
+  -contig688  -contig11  -contig516  contig121  -contig23
+chr	13
+  contig774
+chr	14
+  -contig240  -contig388  contig725  contig715
+chr	15
+  contig60
+chr	16
+  contig732  -contig96  contig282  -contig215  -contig738  -contig564  contig825  contig537  contig510  contig892  contig875  -contig700  -contig777  contig992
+chr	17
+  contig123  contig519
+chr	18
+  contig661  -contig779
+chr	19
+  -contig489  -contig415  -contig1013  contig524  contig629  contig496
+chr	20
+  contig860  -contig433  contig374
+chr	21
+  -contig525
+chr	22
+  contig990  -contig273
+chr	23
+  contig264
+chr	24
+  contig827
+chr	25
+  -contig327
+chr	26
+  contig25  -contig572  contig695
+chr	27
+  -contig87  contig477
+chr	28
+  -contig107  contig262
+chr	29
+  contig934  contig151  contig1091
