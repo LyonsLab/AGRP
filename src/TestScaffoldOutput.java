@@ -32,7 +32,7 @@ public class TestScaffoldOutput{
                 case "im":
                     File dir1 = new File(option);
                     scaffoldFiles = dir1.listFiles();
-                    for(int j = 0; j < scaffoldFiles; j++) {
+                    for(int j = 0; j < scaffoldFiles.length; j++) {
                         System.out.println(scaffoldFiles[j].getName());
                         
                     }
@@ -41,7 +41,7 @@ public class TestScaffoldOutput{
                     File dir2 = new File(option);
                     binFiles = dir2.listFiles();
                     
-                    for(int j = 0; j < binFiles; j++) {
+                    for(int j = 0; j < binFiles.length; j++) {
                         System.out.println(binFiles[i].getName());
                     }
                     break;
