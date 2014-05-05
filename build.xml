@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="AGRP" basedir="." default="compile">
+    <property name="build.dir" value="build" />
+    <property name="classes.dir" value="build" />
+
+    <target name="clean" description="Remove classes">
+        <delete dir="${build.dir}" />
+    </target>
+
+    <target name="compile" description="Compile all files">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="src" destdir="${classes.dir}" />
+    </target>
+</project>
